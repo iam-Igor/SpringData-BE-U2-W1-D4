@@ -4,14 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.List;
 
 @Entity
 @Setter
 @Getter
-@ToString
 @NoArgsConstructor
 public class Pizza extends Item {
 
@@ -20,6 +18,10 @@ public class Pizza extends Item {
     private long id;
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
     @OneToMany
     @JoinColumn(name = "pizza_id")
@@ -34,5 +36,13 @@ public class Pizza extends Item {
         this.isXl = isXl;
     }
 
-
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", menu=" + menu +
+                ", isXl=" + isXl +
+                '}';
+    }
 }

@@ -21,6 +21,7 @@ public abstract class Item {
     private int calories;
     private double price;
 
+
     public Item(int calories, double price) {
         this.calories = calories;
         this.price = price;
