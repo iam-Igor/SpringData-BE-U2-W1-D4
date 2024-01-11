@@ -1,7 +1,9 @@
 package ygor.garofalo.SpringData.entities;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,16 +26,16 @@ public class Tavolo {
     private boolean isFree;
     private double costoCoperto;
 
-    @OneToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+//    @OneToOne
+//    @JoinColumn(name = "order_id")
+//    private Order order;
 
     public Tavolo(int numTable, int numMaxCoperti, boolean isFree, double costoCoperto) {
         this.numTable = numTable;
         this.numMaxCoperti = numMaxCoperti;
         this.isFree = isFree;
         this.costoCoperto = costoCoperto;
-      
+
     }
 
     public void print() {

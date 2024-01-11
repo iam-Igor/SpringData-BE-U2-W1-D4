@@ -1,6 +1,9 @@
 package ygor.garofalo.SpringData.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,19 +16,15 @@ import java.util.List;
 @NoArgsConstructor
 public class Pizza extends Item {
 
-    @Id
-    @GeneratedValue
-    private long id;
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
 
-    @OneToMany
-    @JoinColumn(name = "pizza_id")
+    @ManyToMany
+    @JoinTable(name = "toppings_pizzas", joinColumns = @JoinColumn(name = "pizzas"), inverseJoinColumns = @JoinColumn(name = "toppings"))
     private List<Topping> toppingList;
+
+    
     private boolean isXl = false;
 
 
@@ -36,12 +35,12 @@ public class Pizza extends Item {
         this.isXl = isXl;
     }
 
+
     @Override
     public String toString() {
         return "Pizza{" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", name='" + name + '\'' +
-                ", menu=" + menu +
                 ", isXl=" + isXl +
                 '}';
     }

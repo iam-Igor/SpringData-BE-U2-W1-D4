@@ -1,14 +1,12 @@
 package ygor.garofalo.SpringData.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Random;
 
 @Entity
@@ -26,10 +24,11 @@ public class Order {
     private int numCoperti;
     private LocalTime oraAcquisizione;
 
+    @ManyToMany
+    @JoinTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private List<Item> orderedProducts;
 
-    //private List<Item> orderedProducts;
-
-    @OneToOne(mappedBy = "order")
+    @ManyToOne
     private Tavolo table;
 
 

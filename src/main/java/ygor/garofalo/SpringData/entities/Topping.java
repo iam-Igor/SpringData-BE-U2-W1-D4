@@ -1,6 +1,6 @@
 package ygor.garofalo.SpringData.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,19 +14,7 @@ import lombok.ToString;
 public class Topping extends Item {
 
 
-    @Id
-    @GeneratedValue
-    private long id;
-
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "pizza_id")
-    private Pizza pizza;
-
-    @ManyToOne
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
 
 
     public Topping(String name, int calories, double price) {
